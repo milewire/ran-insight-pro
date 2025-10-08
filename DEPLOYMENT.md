@@ -7,7 +7,7 @@
 2. **Clerk Account**: Sign up at [clerk.com](https://clerk.com)
 3. **GitHub Repository**: Your code should be pushed to GitHub
 
-### Step 1: Set up Clerk Authentication
+### Step 1: Set up Authentication and AI Services
 
 1. **Create a Clerk Application**:
    - Go to [Clerk Dashboard](https://dashboard.clerk.com)
@@ -15,11 +15,21 @@
    - Choose "Next.js" as your framework
    - Copy your API keys
 
+2. **Get OpenAI API Key**:
+   - Go to [OpenAI Platform](https://platform.openai.com/api-keys)
+   - Sign up or log in to your account
+   - Click "Create new secret key"
+   - Copy your API key (starts with `sk-`)
+   - **Note**: You'll need to add billing information to use the API
+
 2. **Configure Environment Variables**:
    - In your local `.env.local` file, add:
    ```
    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
    CLERK_SECRET_KEY=sk_test_...
+   OPENAI_API_KEY=sk-...
+   OPENAI_MODEL=gpt-4o-mini
+   OPENAI_MAX_TOKENS=1000
    ```
 
 ### Step 2: Deploy to Vercel
@@ -36,6 +46,9 @@
    ```
    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = pk_test_...
    CLERK_SECRET_KEY = sk_test_...
+   OPENAI_API_KEY = sk-...
+   OPENAI_MODEL = gpt-4o-mini
+   OPENAI_MAX_TOKENS = 1000
    ```
 
 3. **Deploy**:
