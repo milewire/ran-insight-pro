@@ -5,19 +5,29 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
-import { Upload, Activity, TrendingUp, Zap } from "lucide-react"
+import { Upload, Activity, TrendingUp, Zap, User, LogOut } from "lucide-react"
 import { KPIChart } from "@/components/kpi-chart"
 import { AIFindings } from "@/components/ai-findings"
 import { FileUpload } from "@/components/file-upload"
+import { useUser, useClerk } from "@clerk/nextjs"
+import { useRouter } from "next/navigation"
 import axios from "axios"
 
 export default function RANInsightPro() {
+  const { user, isLoaded } = useUser()
+  const { signOut } = useClerk()
+  const router = useRouter()
   const [cluster, setCluster] = useState("all")
   const [metric, setMetric] = useState("all")
   const [kpiData, setKpiData] = useState<Array<{time: string, prb: number, sinr: number, rtwp: number}>>([])
   const [aiSummary, setAiSummary] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const handleSignOut = async () => {
+    await signOut()
+    router.push("/")
+  }
 
   const handleFileUpload = async (file: File) => {
     setIsLoading(true)
@@ -147,6 +157,53 @@ export default function RANInsightPro() {
                 </div>
               </div>
             </div>
+
+            {/* User Profile Section */}
+            {isLoaded && user && (
+              <div className="pt-6 border-t border-sidebar-border">
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-sidebar-accent/50">
+                  <div className="w-8 h-8 rounded-md bg-primary/20 flex items-center justify-center">
+                    <User className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-sidebar-foreground truncate">
+                      {user.firstName || user.username || user.emailAddresses[0]?.emailAddress}
+                    </p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      {user.emailAddresses[0]?.emailAddress}
+                    </p>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleSignOut}
+                    className="h-8 w-8 p-0 hover:bg-destructive/10"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {isLoaded && !user && (
+              <div className="pt-6 border-t border-sidebar-border">
+                <div className="space-y-2">
+                  <Button 
+                    onClick={() => router.push("/sign-in")}
+                    className="w-full bg-primary hover:bg-primary/90"
+                  >
+                    Sign In
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    onClick={() => router.push("/sign-up")}
+                    className="w-full"
+                  >
+                    Sign Up
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
         </motion.aside>
 
