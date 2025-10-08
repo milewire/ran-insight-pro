@@ -24,6 +24,11 @@ dist/
 .env.test.local
 .env.production.local
 .env*
+# Also ignore files without dot prefix (common mistake)
+env.local
+env.development.local
+env.test.local
+env.production.local
 
 # Vercel
 .vercel
