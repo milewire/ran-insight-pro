@@ -158,7 +158,7 @@ export default function RANInsightPro() {
               </div>
             </div>
 
-            {/* User Profile Section */}
+            {/* User Profile Section - Simplified since we have header auth */}
             {isLoaded && user && (
               <div className="pt-6 border-t border-sidebar-border">
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-sidebar-accent/50">
@@ -173,34 +173,6 @@ export default function RANInsightPro() {
                       {user.emailAddresses[0]?.emailAddress}
                     </p>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleSignOut}
-                    className="h-8 w-8 p-0 hover:bg-destructive/10"
-                  >
-                    <LogOut className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {isLoaded && !user && (
-              <div className="pt-6 border-t border-sidebar-border">
-                <div className="space-y-2">
-                  <Button 
-                    onClick={() => router.push("/sign-in")}
-                    className="w-full bg-primary hover:bg-primary/90"
-                  >
-                    Sign In
-                  </Button>
-                  <Button 
-                    variant="outline"
-                    onClick={() => router.push("/sign-up")}
-                    className="w-full"
-                  >
-                    Sign Up
-                  </Button>
                 </div>
               </div>
             )}
