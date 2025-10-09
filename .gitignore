@@ -1,23 +1,27 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# ================================
 # Dependencies
+# ================================
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+.pnpm-store/
 
+# ================================
 # Next.js
+# ================================
 .next/
 out/
 build/
 dist/
+.vercel
 
-# Production builds
-/build
-/dist
-
-# Environment variables
+# ================================
+# Environment Variables
+# ================================
 .env
 .env.local
 .env.development.local
@@ -30,14 +34,15 @@ env.development.local
 env.test.local
 env.production.local
 
-# Vercel
-.vercel
-
+# ================================
 # TypeScript
+# ================================
 *.tsbuildinfo
 next-env.d.ts
 
+# ================================
 # Python
+# ================================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -68,72 +73,71 @@ env.bak/
 venv.bak/
 .venv/
 
-# Database
+# ================================
+# Database Files
+# ================================
 *.db
 *.sqlite
 *.sqlite3
 ran_insight.db
+*.db-journal
 
+# ================================
 # Logs
+# ================================
 logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+.pnpm-debug.log*
 
-# Runtime data
+# ================================
+# Runtime Data
+# ================================
 pids
 *.pid
 *.seed
 *.pid.lock
 
-# Coverage directory used by tools like istanbul
+# ================================
+# Coverage & Testing
+# ================================
 coverage/
 *.lcov
+.nyc_output/
+.jest/
+test-results/
+playwright-report/
+test-results.xml
 
-# nyc test coverage
-.nyc_output
-
-# Dependency directories
-jspm_packages/
-
-# Optional npm cache directory
+# ================================
+# Cache Directories
+# ================================
 .npm
-
-# Optional eslint cache
 .eslintcache
-
-# Microbundle cache
+.cache
+.parcel-cache
 .rpt2_cache/
 .rts2_cache_cjs/
 .rts2_cache_es/
 .rts2_cache_umd/
+.turbo
 
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# parcel-bundler cache (https://parceljs.org/)
-.cache
-.parcel-cache
-
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
-
-# IDE
+# ================================
+# IDE & Editor Files
+# ================================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+.vscode-test
 
-# OS generated files
+# ================================
+# OS Generated Files
+# ================================
 .DS_Store
 .DS_Store?
 ._*
@@ -141,13 +145,21 @@ jspm_packages/
 .Trashes
 ehthumbs.db
 Thumbs.db
+desktop.ini
 
-# Temporary files
+# ================================
+# Temporary Files
+# ================================
 temp/
 tmp/
 *.tmp
 *.temp
+.tmp/
+.temp/
 
+# ================================
+# Project Specific
+# ================================
 # Uploads
 uploads/
 backend/uploads/
@@ -159,14 +171,49 @@ backend/reports/
 # Snapshots
 .snapshots/
 
-# Testing
-coverage/
-.nyc_output/
-
-# Storybook build outputs
+# Storybook
 .out
 .storybook-out
 
-# Temporary folders
-tmp/
-temp/
+# ================================
+# Package Manager Files
+# ================================
+# Yarn
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# pnpm
+.pnpm-debug.log*
+
+# ================================
+# Build Artifacts
+# ================================
+*.tgz
+*.tar.gz
+*.zip
+*.rar
+
+# ================================
+# Optional REPL History
+# ================================
+.node_repl_history
+
+# ================================
+# Dependency Directories
+# ================================
+jspm_packages/
+
+# ================================
+# Security & Secrets
+# ================================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+.secrets/
